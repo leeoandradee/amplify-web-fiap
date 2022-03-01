@@ -357,3 +357,5 @@ Depois disso a cada commit que for feito na branch master do repositório, será
 Podemos acessar a aplicação no seguinte link
 
 https://master.d32b0mqoens36d.amplifyapp.com/
+
+Esse link foi gerado pelo Amplify
