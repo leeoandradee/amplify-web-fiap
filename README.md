@@ -5,9 +5,9 @@ No projeto foi utilizado o Angular 13 e fluxo de cadastro e autenticação.
 
 **Membros**
 
-Leonardo Andrade
+Leonardo Andrade RM 341494
 
-Matheus Tadeu
+Matheus Tadeu RM 340506
 
 **Como executar o projeto local**
 
@@ -298,7 +298,62 @@ git add .
 git commit -m "novas alteracoes"
 git push origin master
 ```
-Isso fará que execute a pipeline configurada no Amplify, executando os steps de build e deploy.
+**Deploy da aplicação**
 
-Podemos acessar o app no seguintes link:
+Para efetuar o deploy da aplicação será necessário criar um Host no S3 que é um serviço da Amazon para armazenamento de arquivos e dados, com isso teremos uma entrega contínua com o repositório do Github
 
+Após a criação do repositório, será preciso rodar esse comando
+
+```bash
+amplify hosting add
+```
+
+Esse comando vai criar o host no Amplify
+
+Depois disso quando aparecer Select the plugin module to execute escolha
+
+```bash
+Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
+```
+
+Isso foi escolhido porque vamos utilizar o Host do Amplify com entrega contínua
+
+Quando aparecer Choose a type escolha a opção
+
+```bash
+Continuous deployment (Git-based deployments)
+```
+
+Já essa opção foi escolhida porque será utilizado a entrega contínua em um repositório Git
+
+Depois disso entre no dashboard do Amplify na aba Hosting Environments e selecione qual serviço Git está utilizando, nesse caso é o GitHub e clique no botão Connect branch e vai abrir outra página para selecionar a branch do repositório
+
+Nessa página autorize o Amplify acessar sua conta do Github selecione a aplicação e a branch master também o environment dev
+
+Será necessário habilitar a opção 
+
+```bash
+Enable full-stack continuous deployments (CI/CD)
+```
+
+Essa opção foi habilitada para garantir que o deploy seja feito depois de ações no repositório Git
+
+Clique agora em 
+
+```bash
+Create new role
+```
+
+Após isso será aberta uma nova aba onde será necessário clicar em next até criar a role necessária depois disso volte ao Amplify e selecione a role criada caso ela não apareça na lista, clique em Refresh existing roles para atualizar e depois disso clique em next de novo
+
+Com a role criada revise as informações no Amplify e clique no botão
+
+```bash
+Save and Deploy
+```
+
+Depois disso a cada commit que for feito na branch master do repositório, será feito o deploy automaticamente com as alterações
+
+Podemos acessar a aplicação no seguinte link
+
+https://master.d32b0mqoens36d.amplifyapp.com/
