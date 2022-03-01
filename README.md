@@ -6,6 +6,7 @@ No projeto foi utilizado o Angular 13 e fluxo de cadastro e autenticação.
 **Membros**
 
 Leonardo Andrade
+
 Matheus Tadeu
 
 **Como executar o projeto local**
@@ -54,7 +55,7 @@ Enter a name for the project (nome_do_seu_app)
 # Agora vamos escolher o nome do ambiente que queremos criar, como estamos fazendo para estudo, vamos deixar como dev
 Enter a name for the environment (dev)
 
-# As vezes o CLI mostra para editar alguns arquivos, entao vamos escolher o que estamos utilizando agora
+# As vezes o CLI mostra para editar alguns arquivos, entao vamos escolher o que editor atual
 Choose your default editor
 
 # Vamos escolher javascript como linguagem de build
@@ -81,7 +82,7 @@ Start command (ng serve or npm start)
 npm install --save aws-amplify @aws-amplify/ui-angular
 ```
 
-*5 -Vamos adicionar a opção de autenticação do Amplify em nosso app, com os seguintes passos*
+*5 -Vamos adicionar a opção de autenticação do Amplify com os seguintes passos*
 ```bash
 amplify add auth
 
@@ -288,7 +289,7 @@ export class AppComponent implements OnInit {
 ```bash
 npm start
 ```
-**Como publicar nova versao no bucket**
+**Publicando nova versao no bucket**
 
 *1 - Rodar o comando do git para adicionar novas alterações*
 ```bash
@@ -300,3 +301,4 @@ git push origin master
 Isso fará que execute a pipeline configurada no Amplify, executando os steps de build e deploy.
 
 Podemos acessar o app no seguintes link:
+
