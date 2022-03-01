@@ -1,38 +1,44 @@
+**Sobre**
 O projeto foi criado com intuito de estudar melhor o serviço Amplify da AWS.
 No projeto foi utilizado o Angular 13 e fluxo de cadastro e autenticação.
+
+**Membros**
+Leonardo Andrade
+Metheus Tadeu
 
 **Como executar o projeto local**
 
 *1 - Fazer o clone do projeto em seu workspace*
-```powershell
+```bash
 git clone git@github.com:leeoandradee/amplify-web-fiap.git
 ```
 *2 - Rodar o comando para instalar as dependências do projeto*
-```powershell
+```bash
 npm install
 ```
 *3- Rodar o comando para fazer o start da aplicação no localhost*
-```powershell
+```bash
 npm start
 ```
 
 **Como publicar nova versao no bucket**
 
 *1 - Rodar o comando do git para adicionar novas alterações no git*
-```powershell
+```bash
 git status
 git add .
 git commit -m "adding new changes"
 git push origin master
 ```
 *Isso fará que execute a pipeline configurada no Amplify, executando os steps de: build e deploy*
+*Podemos acessar o app no seguintes link:*
 
 
 **Como configurar o deploy com o Amplify**
 
 *1 - Vamos criar um projeto Angular com os seguintes passos*
 
-```powershell
+```bash
 npx -p @angular/cli ng new nome_do_seu_app
 
 - Would you like to add Angular routing? Y
@@ -40,8 +46,6 @@ npx -p @angular/cli ng new nome_do_seu_app
 
 cd nome_do_seu_app
 ```
-
-
 
 *2 - Depois que o app foi criado, vamos entrar adicionar no src/polyfills.ts os seguintes códigos para dar suporte a versão do Angular 6+*
 ```javascript
@@ -70,7 +74,7 @@ Enter a name for the environment (dev)
 Choose your default editor
 
 # Vamos escolher javascript como linguagem de build
-Choose the type of app that you're building (javascript)
+Choose the type of app that you are building (javascript)
 
 # Vamos escolher o angular como framework
 What JavaScript framework are you using (angular)
@@ -93,7 +97,21 @@ Start command (ng serve or npm start)
 npm install --save aws-amplify @aws-amplify/ui-angular
 ```
 
-*6 - Vamos adicionar no app.module.ts a importação do módulo do Amplify*
+*6 -Vamos adicionar autenticação do Amplify em nosso app *
+```bash
+amplify add auth
+
+# Vamos escolher a configuração default de autenticação
+Do you want to use the default authentication and security configuration? Default configuration
+
+# Vamos escolher a opção de username como chave de login
+How do you want users to be able to sign in? Username
+
+# Vamos escolher a opção de que não vamos adicionar configurações avançadas no projeto
+Do you want to configure advanced settings?  No, I am done.
+```
+
+*7 - Agora que configuramos o amplify, vamos configurar a parte do Angular. Vamos adicionar no app.module.ts a importação do módulo do Amplify*
 ```typescript
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -115,7 +133,7 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-*7 - No main.ts vamos adicionar a configuracao do Amplify*
+*8 - No main.ts vamos adicionar a configuracao do Amplify*
 ```typescript
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -136,9 +154,8 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 ```
 
-*8 - Por ultimo vamos o tsconfig.app.ts para compilar*
+*9 - Por ultimo vamos o tsconfig.app.ts para compilar os arquivos javascript*
 ```typescript
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
@@ -155,7 +172,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 }
 ```
 
-*9 - Agora podemos colocar no app.component.html as seguintes configuracoes*
+*10 - Agora podemos colocar no app.component.html as seguintes configuracoes*
 ```html
 <amplify-authenticator>
   <amplify-sign-up
@@ -187,7 +204,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 ```
 
 
-*10 - Agora vamos colocar no app.component.ts as seguintes configuracoes*
+*11 - Agora vamos colocar no app.component.ts as seguintes configuracoes*
 ```typescript
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
@@ -273,29 +290,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-*2 - *
-
-*1 - Com o git já configurado no projeto, vamos rodar o comando para adicionar um host no Bucket S3, onde nosso estático está hospedado*
-```powershell
-amplify hosting add
+*12 - Agora já podemos rodar o projeto e fazermos um teste*
+```bash
+npm start
 ```
-
-*2 - Escolha as opções a seguir, para podermos configurar que os arquivos da aplicação estática será pegado como base do GitHub*
-```powershell
-- Select the plugin module to execute
-- Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)
-- Choose a type
-- Continuous deployment (Git-based deployments)
-```
-
